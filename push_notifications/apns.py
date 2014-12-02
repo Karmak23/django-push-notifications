@@ -105,17 +105,20 @@ def _apns_send(token, alert, badge=None, sound=None, category=None, content_avai
 	data = {}
 	aps_data = {}
 
-	if action_loc_key or loc_key or loc_args:
+	if action_loc_key or loc_key or loc_args or actions:
 		alert = {"body": alert} if alert else {}
+
 		if action_loc_key:
 			alert["action-loc-key"] = action_loc_key
+
 		if loc_key:
 			alert["loc-key"] = loc_key
+
 		if loc_args:
 			alert["loc-args"] = loc_args
 
-	if actions is not None:
-		aps_data["actions"] = actions
+		if actions:
+			alert["actions"] = actions
 
 	if alert is not None:
 		aps_data["alert"] = alert
