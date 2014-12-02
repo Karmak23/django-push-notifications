@@ -100,7 +100,7 @@ def _apns_check_errors(sock):
 
 
 def _apns_send(token, alert, badge=None, sound=None, category=None, content_available=False,
-	action_loc_key=None, loc_key=None, loc_args=[], extra={}, identifier=0,
+	action_loc_key=None, loc_key=None, loc_args=[], actions=None, extra={}, identifier=0,
 	expiration=None, priority=10, socket=None):
 	data = {}
 	aps_data = {}
@@ -113,6 +113,9 @@ def _apns_send(token, alert, badge=None, sound=None, category=None, content_avai
 			alert["loc-key"] = loc_key
 		if loc_args:
 			alert["loc-args"] = loc_args
+
+	if actions is not None:
+		aps_data["actions"] = actions
 
 	if alert is not None:
 		aps_data["alert"] = alert
