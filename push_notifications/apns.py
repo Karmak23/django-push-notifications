@@ -32,14 +32,14 @@ class APNSDataOverflow(APNSError):
 
 
 def _apns_create_socket(address_tuple):
-	certfile = SETTINGS.get("APNS_CERTIFICATE")
+	certfile = unicode(SETTINGS.get("APNS_CERTIFICATE"))
 	if not certfile:
 		raise ImproperlyConfigured(
 			'You need to set PUSH_NOTIFICATIONS_SETTINGS["APNS_CERTIFICATE"] to send messages through APNS.'
 		)
 
 	try:
-		with open(unicode(certfile), "r") as f:
+		with open(certfile, "r") as f:
 			f.read()
 	except Exception as e:
 		raise ImproperlyConfigured("The APNS certificate file at %r is not readable: %s" % (certfile, e))
