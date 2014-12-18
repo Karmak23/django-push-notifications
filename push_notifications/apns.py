@@ -52,11 +52,11 @@ def _apns_create_socket(address_tuple):
 
 
 def _apns_create_socket_to_push():
-	return _apns_create_socket((SETTINGS["APNS_HOST"], SETTINGS["APNS_PORT"]))
+	return _apns_create_socket((unicode(SETTINGS["APNS_HOST"]), SETTINGS["APNS_PORT"]))
 
 
 def _apns_create_socket_to_feedback():
-	return _apns_create_socket((SETTINGS["APNS_FEEDBACK_HOST"], SETTINGS["APNS_FEEDBACK_PORT"]))
+	return _apns_create_socket((unicode(SETTINGS["APNS_FEEDBACK_HOST"]), SETTINGS["APNS_FEEDBACK_PORT"]))
 
 
 def _apns_pack_frame(token_hex, payload, identifier, expiration, priority):
